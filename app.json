@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "The Mystery School",
+    "slug": "mystery-school",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "scheme": "mystery-school",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0A0A12"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.lycheetah.mysteryschool"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0A0A12"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.lycheetah.mysteryschool"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#C9A84C"
+        }
+      ]
+    ]
+  }
+}
