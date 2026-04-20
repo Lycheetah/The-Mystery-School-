@@ -2036,3 +2036,186 @@
   color: var(--accent, #C9A84C);
   opacity: 0.65;
 }
+
+/* ─── Guided study modes ───────────────────────────────── */
+.study-room-guided {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 2rem 4rem;
+}
+
+.guided-koan {
+  border-left: 3px solid;
+  padding: 1.25rem 1.5rem;
+  margin: 0 0 1.5rem;
+  background: rgba(255,255,255,0.02);
+  border-radius: 0 8px 8px 0;
+}
+
+.guided-koan-text {
+  font-size: 1.15rem;
+  line-height: 1.85;
+  color: var(--text-primary, #E8E4DC);
+  margin: 0;
+  font-style: italic;
+}
+
+.guided-timer-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.guided-timer-btn {
+  background: transparent;
+  border: 1px solid;
+  border-radius: 6px;
+  padding: 0.5rem 1.25rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.85rem;
+  transition: background 0.15s;
+}
+
+.guided-timer-btn:hover { background: rgba(255,255,255,0.04); }
+
+.guided-timer-display {
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+}
+
+.guided-answer-textarea {
+  width: 100%;
+  background: var(--bg-primary, #0A0A12);
+  border: 1px solid var(--border, #2A2A3E);
+  border-radius: 6px;
+  color: var(--text-primary, #E8E4DC);
+  font-size: 0.875rem;
+  font-family: Georgia, serif;
+  padding: 0.75rem 1rem;
+  resize: vertical;
+  line-height: 1.7;
+  box-sizing: border-box;
+  font-style: italic;
+}
+
+/* Socratic */
+.study-room-socratic { padding-bottom: 1rem; }
+
+.socratic-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.socratic-msg {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.socratic-msg--assistant { align-items: flex-start; }
+.socratic-msg--user { align-items: flex-end; }
+
+.socratic-msg-role {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.socratic-msg-text {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  padding: 0.65rem 0.9rem;
+  border-radius: 8px;
+  max-width: 88%;
+}
+
+.socratic-msg--assistant .socratic-msg-text {
+  background: var(--bg-secondary, #12121E);
+  border: 1px solid var(--border, #2A2A3E);
+  color: var(--text-primary, #E8E4DC);
+}
+
+.socratic-msg--user .socratic-msg-text {
+  background: rgba(201, 168, 76, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  color: var(--text-primary, #E8E4DC);
+}
+
+.socratic-input-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.socratic-input {
+  flex: 1;
+  background: var(--bg-primary, #0A0A12);
+  border: 1px solid var(--border, #2A2A3E);
+  border-radius: 6px;
+  color: var(--text-primary, #E8E4DC);
+  font-size: 0.875rem;
+  font-family: inherit;
+  padding: 0.6rem 0.75rem;
+  resize: none;
+  line-height: 1.5;
+}
+
+.socratic-send-btn {
+  background: transparent;
+  border: 1px solid;
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.socratic-send-btn:hover:not(:disabled) { background: rgba(255,255,255,0.04); }
+.socratic-send-btn:disabled { opacity: 0.3; cursor: default; }
+
+/* Connect */
+.connect-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.connect-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-secondary, #12121E);
+  border: 1px solid var(--border, #2A2A3E);
+  border-radius: 8px;
+}
+
+.connect-glyph {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  width: 1.5rem;
+  text-align: center;
+  margin-top: 2px;
+}
+
+.connect-name {
+  font-size: 0.9rem;
+  color: var(--text-primary, #E8E4DC);
+}
+
+.connect-reason {
+  font-size: 0.75rem;
+  font-style: italic;
+  margin-top: 0.15rem;
+}
+

@@ -765,10 +765,14 @@ function EmptyState() {
 // ─── Subject detail ───────────────────────────────────────────────────────────
 
 const STUDY_TABS = [
-  { id: 'read',     label: 'Read',    glyph: '≡' },
-  { id: 'reflect',  label: 'Reflect', glyph: '◎' },
-  { id: 'practice', label: 'Practice',glyph: '⟳' },
-  { id: 'notes',    label: 'Notes',   glyph: '✎' },
+  { id: 'read',        label: 'Read',       glyph: '≡' },
+  { id: 'reflect',     label: 'Reflect',    glyph: '◎' },
+  { id: 'contemplate', label: 'Contemplate',glyph: '∴' },
+  { id: 'socratic',    label: 'Socratic',   glyph: 'Ψ' },
+  { id: 'apply',       label: 'Apply',      glyph: '⊕' },
+  { id: 'connect',     label: 'Connect',    glyph: '⟡' },
+  { id: 'practice',    label: 'Practice',   glyph: '⟳' },
+  { id: 'notes',       label: 'Notes',      glyph: '✎' },
 ]
 
 // Domain → practice type mapping for PRACTICE tab launch
@@ -795,11 +799,33 @@ function SubjectDetail({ subject, progress, available, masteryStage, subjectNote
   const [studyTab, setStudyTab] = useState('read')
   const [noteText, setNoteText] = useState(subjectNote || '')
   const [noteSaved, setNoteSaved] = useState(true)
-  const [reflectQs, setReflectQs] = useState(null)   // null = not loaded, [] = loading, [q,q,q] = ready
+  const [reflectQs, setReflectQs] = useState(null)
   const [reflectLoading, setReflectLoading] = useState(false)
   const [reflectAnswers, setReflectAnswers] = useState({})
   const [integrateMode, setIntegrateMode] = useState(false)
   const [integrateText, setIntegrateText] = useState('')
+
+  // Contemplate
+  const [contemplateQ, setContemplateQ] = useState(null)
+  const [contemplateLoading, setContemplateLoading] = useState(false)
+  const [contemplateAnswer, setContemplateAnswer] = useState('')
+  const [contemplateTimerSec, setContemplateTimerSec] = useState(0)
+  const contemplateTimerRef = useRef(null)
+
+  // Socratic
+  const [socraticMessages, setSocraticMessages] = useState([])
+  const [socraticInput, setSocraticInput] = useState('')
+  const [socraticLoading, setSocraticLoading] = useState(false)
+
+  // Apply
+  const [applyQs, setApplyQs] = useState(null)
+  const [applyLoading, setApplyLoading] = useState(false)
+  const [applyAnswers, setApplyAnswers] = useState({})
+
+  // Connect
+  const [connectSuggestions, setConnectSuggestions] = useState(null)
+  const [connectLoading, setConnectLoading] = useState(false)
+
   const articleRef = useRef(null)
   const noteDebounce = useRef(null)
 
@@ -812,6 +838,15 @@ function SubjectDetail({ subject, progress, available, masteryStage, subjectNote
     setReflectAnswers({})
     setIntegrateMode(false)
     setIntegrateText('')
+    setContemplateQ(null)
+    setContemplateAnswer('')
+    setContemplateTimerSec(0)
+    clearInterval(contemplateTimerRef.current)
+    setSocraticMessages([])
+    setSocraticInput('')
+    setApplyQs(null)
+    setApplyAnswers({})
+    setConnectSuggestions(null)
   }, [subject.id])
 
   // Sync note text when prop updates
@@ -890,6 +925,105 @@ function SubjectDetail({ subject, progress, available, masteryStage, subjectNote
 
   useEffect(() => {
     if (studyTab === 'reflect') loadReflectQuestions()
+  }, [studyTab])
+
+  // Contemplate — one koan-style question + silence timer
+  async function loadContemplateQuestion() {
+    if (contemplateQ !== null) return
+    setContemplateLoading(true)
+    const snippet = sectionContent ? sectionContent.slice(0, 1000) : `${subject.name} in ${subject.domain}`
+    try {
+      const { callAPI } = await import('../../engine/api.js')
+      const res = await callAPI({ messages: [{ role: 'user', content: `You are a contemplative teacher. From this teaching on "${subject.name}":\n\n${snippet}\n\nWrite ONE koan-style question that cannot be answered with knowledge alone — only through sitting with it. Return only the question, no preamble.` }], maxTokens: 120 })
+      setContemplateQ(res.content.trim())
+    } catch {
+      setContemplateQ(`Where in your body do you feel the truth of ${subject.name} — or its absence?`)
+    }
+    setContemplateLoading(false)
+  }
+
+  function startContemplateTimer() {
+    clearInterval(contemplateTimerRef.current)
+    setContemplateTimerSec(0)
+    contemplateTimerRef.current = setInterval(() => setContemplateTimerSec(s => s + 1), 1000)
+  }
+
+  useEffect(() => {
+    if (studyTab === 'contemplate') loadContemplateQuestion()
+    if (studyTab !== 'contemplate') clearInterval(contemplateTimerRef.current)
+  }, [studyTab])
+
+  // Socratic — adversarial AI chat
+  async function sendSocratic(userMsg) {
+    if (!userMsg.trim() || socraticLoading) return
+    const next = [...socraticMessages, { role: 'user', content: userMsg }]
+    setSocraticMessages(next)
+    setSocraticInput('')
+    setSocraticLoading(true)
+    try {
+      const { callAPI } = await import('../../engine/api.js')
+      const system = `You are a Socratic teacher specialising in "${subject.name}" (${subject.domain}). Your role: challenge the student's understanding with precision. Never validate easily. Expose assumptions. Ask follow-up questions that require deeper thinking. Be intellectually rigorous but not unkind. Keep responses under 120 words.`
+      const res = await callAPI({ systemPrompt: system, messages: next, maxTokens: 200 })
+      setSocraticMessages(m => [...m, { role: 'assistant', content: res.content.trim() }])
+    } catch {
+      setSocraticMessages(m => [...m, { role: 'assistant', content: 'The connection failed. Hold the question yourself for now.' }])
+    }
+    setSocraticLoading(false)
+  }
+
+  useEffect(() => {
+    if (studyTab === 'socratic' && socraticMessages.length === 0) {
+      const opener = `What do you believe ${subject.name} actually means — in your own words, not the article's?`
+      setSocraticMessages([{ role: 'assistant', content: opener }])
+    }
+  }, [studyTab])
+
+  // Apply — 3 life-application questions
+  async function loadApplyQuestions() {
+    if (applyQs !== null) return
+    setApplyLoading(true)
+    const snippet = sectionContent ? sectionContent.slice(0, 800) : subject.name
+    try {
+      const { callAPI } = await import('../../engine/api.js')
+      const res = await callAPI({ messages: [{ role: 'user', content: `You are a depth psychology teacher. From this teaching on "${subject.name}":\n\n${snippet}\n\nGenerate exactly 3 questions that ask the student to locate this teaching in their actual life — not theoretically, but in real, specific situations. Each question must begin with "Where", "When", or "Who". Return ONLY a JSON array of 3 strings.` }], maxTokens: 300 })
+      let qs = []
+      try { qs = JSON.parse(res.content.replace(/```json|```/g, '').trim()) } catch {}
+      if (!Array.isArray(qs) || qs.length < 3) qs = [
+        `Where in your current life is ${subject.name} already happening — named or unnamed?`,
+        `When have you acted against the principles of ${subject.name}, and what did that cost you?`,
+        `Who in your life would most benefit from understanding ${subject.name}, and why?`,
+      ]
+      setApplyQs(qs)
+    } catch {
+      setApplyQs([
+        `Where in your current life is ${subject.name} already happening — named or unnamed?`,
+        `When have you acted against the principles of ${subject.name}, and what did that cost you?`,
+        `Who in your life would most benefit from understanding ${subject.name}, and why?`,
+      ])
+    }
+    setApplyLoading(false)
+  }
+
+  useEffect(() => {
+    if (studyTab === 'apply') loadApplyQuestions()
+  }, [studyTab])
+
+  // Connect — find related subjects from completed list
+  function buildConnections(completedList) {
+    if (connectSuggestions !== null) return
+    setConnectLoading(true)
+    const allSubjects = [...SUBJECTS, ...UNCOMMON_SUBJECTS, ...VOID_SUBJECTS]
+    const related = allSubjects.filter(s =>
+      s.id !== subject.id &&
+      completedList.includes(s.id) &&
+      (s.domain === subject.domain || s.phase === subject.phase || (s.prerequisites || []).includes(subject.id) || (subject.prerequisites || []).includes(s.id))
+    ).slice(0, 8)
+    setConnectSuggestions(related)
+    setConnectLoading(false)
+  }
+
+  useEffect(() => {
+    if (studyTab === 'connect') buildConnections(Object.keys(progress).filter(k => progress[k]?.status === 'completed'))
   }, [studyTab])
 
   const practiceType = DOMAIN_PRACTICE_MAP[subject.domain]
@@ -1219,6 +1353,189 @@ function SubjectDetail({ subject, progress, available, masteryStage, subjectNote
                   onClick={() => onSetMasteryStage(subject.name, Math.max(masteryStage, MASTERY_STAGES.PRACTICED))}
                 >
                   <span className="font-mono">●</span> I've practiced this — mark as Practiced
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* CONTEMPLATE tab */}
+      {studyTab === 'contemplate' && (
+        <div className="study-room-body">
+          <div className="study-room-guided">
+            <h2 className="study-room-section-title font-serif">Contemplation</h2>
+            <p className="text-dim" style={{ marginBottom: 28, fontSize: 14 }}>
+              One question. Sit with it before writing. Let it open rather than close.
+            </p>
+            {contemplateLoading && (
+              <div className="study-room-loading">
+                <span className="font-mono" style={{ color: phaseColour }}>∴</span>
+                <span className="text-dim"> Forming the question…</span>
+              </div>
+            )}
+            {contemplateQ && (
+              <>
+                <div className="guided-koan" style={{ borderColor: phaseColour }}>
+                  <p className="guided-koan-text font-serif">{contemplateQ}</p>
+                </div>
+                <div className="guided-timer-row">
+                  {contemplateTimerSec === 0 ? (
+                    <button className="guided-timer-btn" style={{ borderColor: phaseColour, color: phaseColour }} onClick={startContemplateTimer}>
+                      <span className="font-mono">◎</span> Begin silence
+                    </button>
+                  ) : (
+                    <span className="guided-timer-display font-mono" style={{ color: phaseColour }}>
+                      {String(Math.floor(contemplateTimerSec / 60)).padStart(2,'0')}:{String(contemplateTimerSec % 60).padStart(2,'0')}
+                    </span>
+                  )}
+                </div>
+                <textarea
+                  className="guided-answer-textarea"
+                  placeholder="When you're ready — write whatever emerged…"
+                  value={contemplateAnswer}
+                  onChange={e => setContemplateAnswer(e.target.value)}
+                  rows={6}
+                />
+                {contemplateAnswer.trim().length > 0 && (
+                  <button className="detail-teacher-btn" style={{ marginTop: 12 }} onClick={() => onAskGuide?.(`I've been contemplating "${subject.name}". The question was:\n\n${contemplateQ}\n\nWhat emerged:\n\n${contemplateAnswer}`)}>
+                    <span className="font-mono">⊚</span> Bring to Guide
+                  </button>
+                )}
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* SOCRATIC tab */}
+      {studyTab === 'socratic' && (
+        <div className="study-room-body">
+          <div className="study-room-guided study-room-socratic">
+            <h2 className="study-room-section-title font-serif">Socratic Dialogue</h2>
+            <p className="text-dim" style={{ marginBottom: 20, fontSize: 14 }}>
+              The teacher challenges what you think you know. Defend your understanding.
+            </p>
+            <div className="socratic-thread">
+              {socraticMessages.map((m, i) => (
+                <div key={i} className={`socratic-msg socratic-msg--${m.role}`}>
+                  <span className="socratic-msg-role font-mono text-dim">{m.role === 'assistant' ? 'Teacher' : 'You'}</span>
+                  <p className="socratic-msg-text">{m.content}</p>
+                </div>
+              ))}
+              {socraticLoading && (
+                <div className="socratic-msg socratic-msg--assistant">
+                  <span className="socratic-msg-role font-mono text-dim">Teacher</span>
+                  <p className="socratic-msg-text text-dim">…</p>
+                </div>
+              )}
+            </div>
+            <div className="socratic-input-row">
+              <textarea
+                className="socratic-input"
+                placeholder="Your response…"
+                value={socraticInput}
+                onChange={e => setSocraticInput(e.target.value)}
+                onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendSocratic(socraticInput) } }}
+                rows={2}
+                disabled={socraticLoading}
+              />
+              <button
+                className="socratic-send-btn"
+                style={{ borderColor: phaseColour, color: phaseColour }}
+                onClick={() => sendSocratic(socraticInput)}
+                disabled={!socraticInput.trim() || socraticLoading}
+              >→</button>
+            </div>
+            <p className="text-dim" style={{ fontSize: 11, marginTop: 6 }}>Enter to send · Shift+Enter for new line</p>
+          </div>
+        </div>
+      )}
+
+      {/* APPLY tab */}
+      {studyTab === 'apply' && (
+        <div className="study-room-body">
+          <div className="study-room-guided">
+            <h2 className="study-room-section-title font-serif">Application</h2>
+            <p className="text-dim" style={{ marginBottom: 28, fontSize: 14 }}>
+              Knowledge without location is theory. Find where this lives in your actual life.
+            </p>
+            {applyLoading && (
+              <div className="study-room-loading">
+                <span className="font-mono" style={{ color: phaseColour }}>⊕</span>
+                <span className="text-dim"> Grounding the teaching in life…</span>
+              </div>
+            )}
+            {applyQs && applyQs.map((q, i) => (
+              <div key={i} className="reflect-question-block">
+                <div className="reflect-q-label text-dim font-mono" style={{ color: phaseColour }}>A{i + 1}</div>
+                <p className="reflect-q-text">{q}</p>
+                <textarea
+                  className="reflect-answer-textarea"
+                  placeholder="Be specific. A real situation, not a general answer…"
+                  value={applyAnswers[i] || ''}
+                  onChange={e => setApplyAnswers(a => ({ ...a, [i]: e.target.value }))}
+                  rows={4}
+                />
+              </div>
+            ))}
+            {applyQs && Object.values(applyAnswers).some(a => a.trim().length > 20) && (
+              <button className="detail-teacher-btn" style={{ marginTop: 8 }} onClick={() => {
+                const combined = applyQs.map((q, i) => `Q: ${q}\nA: ${applyAnswers[i] || '(blank)'}`).join('\n\n')
+                onAskGuide?.(`I'm applying the teaching of "${subject.name}" to my life:\n\n${combined}`)
+              }}>
+                <span className="font-mono">⊚</span> Bring to Guide
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* CONNECT tab */}
+      {studyTab === 'connect' && (
+        <div className="study-room-body">
+          <div className="study-room-guided">
+            <h2 className="study-room-section-title font-serif">Connections</h2>
+            <p className="text-dim" style={{ marginBottom: 24, fontSize: 14 }}>
+              Subjects you've completed that share domain, phase, or prerequisite lineage with {subject.name}.
+            </p>
+            {connectLoading && (
+              <div className="study-room-loading">
+                <span className="font-mono" style={{ color: phaseColour }}>⟡</span>
+                <span className="text-dim"> Mapping connections…</span>
+              </div>
+            )}
+            {connectSuggestions && connectSuggestions.length === 0 && (
+              <p className="text-dim" style={{ fontStyle: 'italic' }}>
+                Complete more subjects to see connections. Return here as your map grows.
+              </p>
+            )}
+            {connectSuggestions && connectSuggestions.length > 0 && (
+              <>
+                <div className="connect-list">
+                  {connectSuggestions.map(s => {
+                    const info = PHASE_COLOURS[s.phase]
+                    const reasons = []
+                    if (s.domain === subject.domain) reasons.push('same domain')
+                    if (s.phase === subject.phase) reasons.push('same phase')
+                    if ((s.prerequisites || []).includes(subject.id)) reasons.push('unlocked by this')
+                    if ((subject.prerequisites || []).includes(s.id)) reasons.push('prerequisite')
+                    return (
+                      <div key={s.id} className="connect-row">
+                        <span className="connect-glyph font-mono" style={{ color: info?.colour }}>{info?.glyph || '⟟'}</span>
+                        <div className="connect-info">
+                          <div className="connect-name">{s.name}</div>
+                          <div className="connect-reason text-dim">{reasons.join(' · ')}</div>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+                <button className="detail-teacher-btn" style={{ marginTop: 16 }} onClick={() => {
+                  const list = connectSuggestions.map(s => s.name).join(', ')
+                  onAskGuide?.(`I've studied both "${subject.name}" and these related subjects: ${list}. Can you synthesize the deeper connections between them?`)
+                }}>
+                  <span className="font-mono">⊚</span> Ask Guide to synthesize these connections
                 </button>
               </>
             )}
