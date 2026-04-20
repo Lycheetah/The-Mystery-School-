@@ -1,0 +1,184 @@
+/* ─── Reset ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ─── NIGREDO (default) — warm dark slate ────────────── */
+:root {
+  --bg:          #0F1117;
+  --surface:     #161B26;
+  --card:        #1E2535;
+  --border:      #2D3850;
+  --accent:      #8B7ACC;
+  --accent-soft: #2A2348;
+  --text:        #C8D4E8;
+  --text-dim:    #60708A;
+  --text-bright: #EEF2F8;
+  --glyph:       #9B8ED8;
+  --flame:       #5B3F8C;
+}
+
+/* ─── ALBEDO — cool blue-slate ───────────────────────── */
+[data-depth="ALBEDO"] {
+  --bg:          #0C1018;
+  --surface:     #131A24;
+  --card:        #1A2332;
+  --border:      #273448;
+  --accent:      #6BA8C4;
+  --accent-soft: #1E3A4A;
+  --text:        #BED0E0;
+  --text-dim:    #5A7285;
+  --text-bright: #E4F0F8;
+  --glyph:       #7AC0D8;
+  --flame:       #1E4A60;
+}
+
+/* ─── CITRINITAS — warm amber-gold ───────────────────── */
+[data-depth="CITRINITAS"] {
+  --bg:          #0E0D09;
+  --surface:     #17150C;
+  --card:        #201C10;
+  --border:      #363018;
+  --accent:      #C9A84C;
+  --accent-soft: #3E3010;
+  --text:        #D8CA9C;
+  --text-dim:    #80704C;
+  --text-bright: #F0E4B4;
+  --glyph:       #D4B458;
+  --flame:       #5C3C08;
+}
+
+/* ─── RUBEDO — deep crimson ──────────────────────────── */
+[data-depth="RUBEDO"] {
+  --bg:          #100A0A;
+  --surface:     #1A0E0E;
+  --card:        #241414;
+  --border:      #3A1E1E;
+  --accent:      #C45858;
+  --accent-soft: #3A1414;
+  --text:        #D4B8B8;
+  --text-dim:    #7A5050;
+  --text-bright: #F0D4D4;
+  --glyph:       #D46868;
+  --flame:       #6E1C1C;
+}
+
+/* ─── Base ───────────────────────────────────────────── */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-soft); }
+
+/* ─── Typography ─────────────────────────────────────── */
+.font-serif  { font-family: Georgia, 'Times New Roman', serif; }
+.font-mono   { font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace; }
+.text-dim    { color: var(--text-dim); }
+.text-bright { color: var(--text-bright); }
+.text-accent { color: var(--accent); }
+.text-glyph  { color: var(--glyph); font-family: 'Courier New', monospace; }
+
+/* ─── Layout ─────────────────────────────────────────── */
+.flex         { display: flex; }
+.flex-col     { display: flex; flex-direction: column; }
+.flex-1       { flex: 1; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-1  { gap: 4px; }
+.gap-2  { gap: 8px; }
+.gap-3  { gap: 12px; }
+.gap-4  { gap: 16px; }
+.gap-6  { gap: 24px; }
+
+/* ─── Cards ──────────────────────────────────────────── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.surface {
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+}
+
+/* ─── Buttons ────────────────────────────────────────── */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 0.15s ease;
+}
+
+button:hover { opacity: 0.88; }
+button:active { opacity: 0.72; }
+button:disabled { opacity: 0.38; cursor: not-allowed; }
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--text-bright);
+  padding: 10px 20px;
+  font-weight: 500;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+}
+
+.btn-ghost:hover {
+  opacity: 1;
+  color: var(--text);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* ─── Focus indicators ───────────────────────────────── */
+/* Remove browser default for mouse users, keep for keyboard */
+:focus { outline: none; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Tighter ring on small buttons */
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* Input focus is already handled per-component; reinforce globally */
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
+}
+
+/* ─── Selection ──────────────────────────────────────── */
+::selection {
+  background: var(--accent-soft);
+  color: var(--text-bright);
+}
+
+/* ─── Links ──────────────────────────────────────────── */
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover { opacity: 0.8; }

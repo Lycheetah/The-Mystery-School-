@@ -1,0 +1,371 @@
+/* ─── Forge — shared layout ───────────────────────────────── */
+.forge-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.forge-picker-view {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ─── Picker ─────────────────────────────────────────────── */
+.forge-picker-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.forge-header-glyph { font-size: 36px; }
+.forge-title { font-size: 28px; color: var(--text-bright); }
+.forge-subtitle { font-size: 14px; line-height: 1.6; max-width: 420px; }
+
+.forge-picker-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+.forge-picker-label { font-size: 12px; letter-spacing: 0.05em; }
+
+.forge-search {
+  padding: 10px 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.forge-search:focus { border-color: var(--accent); }
+
+.forge-subject-list {
+  position: absolute;
+  top: 100%;
+  left: 0; right: 0;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 100;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  margin-top: 4px;
+}
+.forge-subject-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 14px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.1s;
+  text-align: left;
+  gap: 12px;
+}
+.forge-subject-option:hover { background: var(--accent-soft); }
+.forge-option-name { font-size: 13px; color: var(--text-bright); }
+.forge-option-domain { font-size: 11px; }
+
+.forge-stage-preview {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.forge-stage-preview-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+}
+.forge-stage-preview-item .font-mono { font-size: 18px; }
+
+/* ─── Stage header ───────────────────────────────────────── */
+.forge-stage-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 24px 0;
+  flex-shrink: 0;
+}
+
+.forge-stage-dots {
+  display: flex;
+  gap: 10px;
+}
+.forge-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: all 0.2s;
+}
+.forge-dot--active { width: 28px; border-radius: 5px; }
+
+.forge-stage-label { font-size: 13px; letter-spacing: 0.05em; }
+.forge-subject-badge { font-size: 18px; color: var(--text-bright); font-weight: 500; }
+
+/* ─── Stage body ─────────────────────────────────────────── */
+.forge-stage-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 24px;
+}
+
+.forge-stage-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  margin-top: 16px;
+  flex-shrink: 0;
+}
+
+.forge-advance-btn {
+  padding: 10px 24px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid;
+  color: #000;
+  transition: opacity 0.15s;
+}
+.forge-advance-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.forge-scroll-hint { font-size: 12px; font-style: italic; }
+
+/* ─── Stage 1: Read ──────────────────────────────────────── */
+.forge-read {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.forge-read-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 0;
+}
+.forge-article { line-height: 1.75; }
+.forge-no-article { padding: 40px 0; text-align: center; }
+.forge-experiment-fallback {
+  margin-top: 16px;
+  padding: 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-align: left;
+}
+
+/* ─── Stage 2: Reflect ───────────────────────────────────── */
+.forge-reflect { padding: 20px 0; display: flex; flex-direction: column; gap: 24px; }
+.forge-reflect-intro { font-size: 13px; line-height: 1.6; }
+.forge-reflect-q { display: flex; flex-direction: column; gap: 8px; }
+.forge-reflect-q-label { font-size: 13px; }
+.forge-reflect-q-text { font-size: 14px; color: var(--text-bright); line-height: 1.5; }
+.forge-reflect-answer {
+  padding: 10px 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.forge-reflect-answer:focus { border-color: var(--accent); }
+.forge-answer-hint { font-size: 11px; font-style: italic; }
+
+/* ─── Stage 3: Practice ──────────────────────────────────── */
+.forge-practice {
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+.forge-practice-type { font-size: 12px; letter-spacing: 0.08em; }
+.forge-practice-prompt {
+  font-size: 18px;
+  color: var(--text-bright);
+  line-height: 1.6;
+  max-width: 420px;
+  font-style: italic;
+}
+.forge-practice-start { margin-top: 8px; }
+
+.forge-timer { position: relative; width: 120px; height: 120px; }
+.forge-timer-ring { width: 120px; height: 120px; }
+.forge-timer-display {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+/* ─── Stage 4: Council ───────────────────────────────────── */
+.forge-council { padding: 20px 0; display: flex; flex-direction: column; gap: 16px; }
+.forge-council-intro { font-size: 13px; line-height: 1.6; }
+
+.forge-teacher-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.forge-teacher-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-dim);
+  transition: all 0.12s;
+}
+.forge-teacher-chip--active { background: var(--accent-soft); }
+.forge-teacher-chip--nokey { opacity: 0.5; }
+
+.forge-thesis-input {
+  padding: 12px 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s;
+  line-height: 1.6;
+}
+.forge-thesis-input:focus { border-color: var(--accent); }
+
+.forge-submit-btn {
+  align-self: flex-start;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #000;
+  border: 1px solid;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.forge-submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.forge-council-response {
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.forge-council-response-header { font-size: 12px; margin-bottom: 8px; letter-spacing: 0.04em; }
+.forge-council-response-body { font-size: 13px; line-height: 1.7; white-space: pre-wrap; }
+
+.forge-error { font-size: 12px; }
+
+/* ─── Stage 5: Journal ───────────────────────────────────── */
+.forge-journal { padding: 20px 0; display: flex; flex-direction: column; gap: 12px; }
+.forge-journal-prompt { font-size: 16px; line-height: 1.6; color: var(--text-bright); }
+.forge-journal-input {
+  padding: 12px 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  outline: none;
+  line-height: 1.7;
+  transition: border-color 0.15s;
+}
+.forge-journal-input:focus { border-color: var(--accent); }
+.forge-journal-hint { font-size: 11px; font-style: italic; }
+
+/* ─── Stage 6: Master ────────────────────────────────────── */
+.forge-master {
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 420px;
+  margin: 0 auto;
+}
+.forge-master-current, .forge-master-next {
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.forge-master-next { border-width: 2px; }
+.forge-master-label { font-size: 11px; letter-spacing: 0.06em; }
+.forge-master-level { font-size: 18px; }
+.forge-master-arrow { font-size: 20px; }
+.forge-master-note-label { font-size: 12px; align-self: flex-start; }
+.forge-master-note {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.forge-master-note:focus { border-color: var(--accent); }
+.forge-complete-btn { color: #000; }
+.forge-skip-btn {
+  background: none;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+/* ─── Completion ─────────────────────────────────────────── */
+.forge-complete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  height: 100%;
+  padding: 60px;
+  text-align: center;
+}
+.forge-complete-glyph { font-size: 48px; }
+.forge-complete-title { font-size: 28px; color: var(--text-bright); }
+.forge-complete-subject { font-size: 16px; font-weight: 600; }
+.forge-complete-desc { font-size: 14px; line-height: 1.8; max-width: 460px; }
+.forge-complete-stamp { font-size: 12px; letter-spacing: 0.06em; }
+.forge-again-btn { padding: 10px 28px; border-radius: 10px; color: #000; font-weight: 600; border: none; cursor: pointer; }

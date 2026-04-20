@@ -1,18 +1,52 @@
 {
   "name": "mystery-school",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
+    "dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
+    "build": "vite build && electron-builder",
+    "vite": "vite",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "expo": "~54.0.33",
-    "expo-status-bar": "~3.0.9",
-    "react": "19.1.0",
-    "react-native": "0.81.5"
+    "electron-store": "^8.1.0",
+    "marked": "^12.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "concurrently": "^8.2.2",
+    "electron": "^29.1.4",
+    "electron-builder": "^24.13.3",
+    "vite": "^5.4.0",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.lycheetah.mysteryschool",
+    "productName": "The Mystery School",
+    "icon": "assets/icon.png",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "dist/**/*",
+      "engine/**/*",
+      "data/**/*",
+      "curriculum/**/*",
+      "assets/**/*"
+    ],
+    "win": {
+      "target": "portable",
+      "signingHashAlgorithms": null,
+      "sign": null
+    },
+    "mac": {
+      "target": "dmg"
+    }
   },
   "private": true
 }

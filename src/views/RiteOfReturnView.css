@@ -1,0 +1,168 @@
+.rite-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-primary, #0A0A12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.rite-content {
+  max-width: 480px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.rite-glyph {
+  font-size: 2.5rem;
+  color: var(--accent, #C9A84C);
+  opacity: 0.7;
+  animation: rite-pulse 3s ease-in-out infinite;
+}
+
+@keyframes rite-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.9; }
+}
+
+.rite-title {
+  font-size: 1.75rem;
+  font-weight: 300;
+  color: var(--text-primary, #E8E4DC);
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.rite-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary, #9090A0);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.rite-note {
+  font-size: 0.8rem;
+  color: var(--accent, #C9A84C);
+  opacity: 0.7;
+  margin: 0;
+  font-style: italic;
+}
+
+.rite-choices {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.rite-choice {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 0.75rem;
+  row-gap: 0.15rem;
+  padding: 1rem 1.25rem;
+  background: var(--bg-secondary, #12121E);
+  border: 1px solid var(--border, #2A2A3E);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.rite-choice:hover {
+  border-color: var(--accent, #C9A84C);
+  background: var(--bg-hover, #1A1A2E);
+}
+
+.rite-choice--ghost {
+  background: transparent;
+  border-color: var(--border-dim, #1E1E30);
+}
+
+.rite-choice-glyph {
+  grid-row: span 2;
+  align-self: center;
+  font-size: 1.1rem;
+  color: var(--accent, #C9A84C);
+  opacity: 0.8;
+}
+
+.rite-choice-label {
+  font-size: 0.95rem;
+  color: var(--text-primary, #E8E4DC);
+  font-weight: 500;
+}
+
+.rite-choice-desc {
+  font-size: 0.78rem;
+  color: var(--text-secondary, #9090A0);
+}
+
+.rite-prompt {
+  font-size: 1rem;
+  color: var(--text-secondary, #9090A0);
+  line-height: 1.7;
+  font-style: italic;
+  margin: 0;
+}
+
+.rite-log-input {
+  width: 100%;
+  min-height: 160px;
+  background: var(--bg-secondary, #12121E);
+  border: 1px solid var(--border, #2A2A3E);
+  border-radius: 8px;
+  color: var(--text-primary, #E8E4DC);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  padding: 1rem;
+  resize: vertical;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.rite-log-input:focus {
+  outline: none;
+  border-color: var(--accent, #C9A84C);
+}
+
+.rite-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.rite-btn {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  font-family: inherit;
+}
+
+.rite-btn--primary {
+  background: var(--accent, #C9A84C);
+  color: #0A0A12;
+  border: none;
+  font-weight: 600;
+}
+
+.rite-btn--ghost {
+  background: transparent;
+  border: 1px solid var(--border, #2A2A3E);
+  color: var(--text-secondary, #9090A0);
+}
+
+.rite-btn:hover { opacity: 0.85; }

@@ -1,0 +1,134 @@
+.ceremony-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 18, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(8px);
+}
+
+.ceremony-modal {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 48px 40px 40px;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.ceremony-skip {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 4px 8px;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+.ceremony-skip:hover { opacity: 1; }
+
+.ceremony-glyph {
+  font-size: 36px;
+  opacity: 0.9;
+}
+
+.ceremony-title {
+  font-size: 18px;
+  color: var(--text-primary);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+/* Breath ring */
+.ceremony-breath {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ceremony-breath-ring {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+
+.ceremony-ring-bg {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 3;
+}
+
+.ceremony-ring-fill {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.05s linear;
+}
+
+.ceremony-breath-label {
+  font-size: 13px;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+/* Intention */
+.ceremony-intention-block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ceremony-line {
+  text-align: center;
+  font-size: 15px;
+  font-style: italic;
+  margin: 0;
+}
+
+.ceremony-intention-input {
+  width: 100%;
+  background: var(--bg-input, rgba(255,255,255,0.04));
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  color: var(--text-primary);
+  font-size: 14px;
+  resize: none;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+.ceremony-intention-input:focus {
+  outline: none;
+  border-color: var(--text-dim);
+}
+.ceremony-intention-input::placeholder { color: var(--text-dim); opacity: 0.6; }
+
+.ceremony-enter-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid;
+  color: #0A0A12;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: opacity 0.2s;
+}
+.ceremony-enter-btn:hover { opacity: 0.88; }

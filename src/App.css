@@ -1,0 +1,44 @@
+/* ─── Loading screen ─────────────────────────────────── */
+.loading-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  background: #0A0A12;
+}
+
+.loading-glyph {
+  font-size: 48px;
+  color: #6B4FA0;
+  animation: loading-pulse 2s ease-in-out infinite;
+  font-family: 'Courier New', monospace;
+}
+
+@keyframes loading-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.97); }
+  50%       { opacity: 0.9; transform: scale(1.03); }
+}
+
+.loading-name {
+  font-size: 15px;
+  font-family: Georgia, serif;
+  color: #3A2A5A;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  animation: loading-fade-in 1.2s ease forwards;
+}
+
+@keyframes loading-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.loading-phrase {
+  font-size: 12px;
+  font-family: 'Courier New', monospace;
+  color: #2A1A3A;
+  letter-spacing: 1.5px;
+  animation: loading-fade-in 1.8s ease forwards;
+}

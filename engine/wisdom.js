@@ -84,6 +84,7 @@ const DOOR_FRAMES = {
 
 /**
  * Get today's wisdom — deterministic by date + phase, rotates through catalogue
+ * Used as fallback when store is not available
  */
 export function getDailyWisdom(phase, doorKey) {
   const catalogue = WISDOM[phase] || WISDOM[1]
@@ -97,6 +98,30 @@ export function getDailyWisdom(phase, doorKey) {
     frame: DOOR_FRAMES[doorKey] || DOOR_FRAMES.SEEKER,
     phase,
     date: today.toISOString().slice(0, 10),
+  }
+}
+
+/**
+ * Pick next unseen wisdom with phase bias.
+ * @param {number} phase — current user phase (1-7)
+ * @param {string} doorKey — user's door
+ * @param {number[]} seenIndices — array of globalIndex values already seen
+ * @returns wisdom object with globalIndex, frame, date
+ */
+export function getNextWisdom(phase, doorKey, seenIndices = []) {
+  const allWithIdx = getAllWisdom().map((w, i) => ({ ...w, globalIndex: i }))
+  // Phase-matching first, then rest
+  const ordered = [
+    ...allWithIdx.filter(w => w.phase === phase),
+    ...allWithIdx.filter(w => w.phase !== phase),
+  ]
+  const unseen = ordered.filter(w => !seenIndices.includes(w.globalIndex))
+  // If all seen, reset and start again
+  const pick = unseen.length > 0 ? unseen[0] : ordered[0]
+  return {
+    ...pick,
+    frame: DOOR_FRAMES[doorKey] || DOOR_FRAMES.SEEKER,
+    date: new Date().toISOString().slice(0, 10),
   }
 }
 

@@ -66,6 +66,40 @@ export const DEPTHS = {
     glyph: '#D86060',
     flame: '#7C2020',
   },
+  SOL: {
+    name: 'Sol',
+    symbol: '☀',
+    sovereign: true,
+    // Sovereign — pure solar gold, the alchemical sun
+    bg: '#0C0A02',
+    surface: '#181204',
+    card: '#241C06',
+    border: '#40300A',
+    accent: '#E8C040',      // bright gold
+    accentSoft: '#6C4C08',
+    text: '#E0D4A0',
+    textDim: '#9A8840',
+    textBright: '#FFF0B8',
+    glyph: '#F0D050',
+    flame: '#905C08',
+  },
+  ECLIPSE: {
+    name: 'Eclipse',
+    symbol: '☽',
+    sovereign: true,
+    // Sovereign — absolute void, electric violet
+    bg: '#040408',
+    surface: '#08080F',
+    card: '#0E0E1C',
+    border: '#1A1A30',
+    accent: '#9060D8',      // electric violet
+    accentSoft: '#2C1860',
+    text: '#B8B0D0',
+    textDim: '#60587A',
+    textBright: '#E0D8F8',
+    glyph: '#A870F0',
+    flame: '#3C1880',
+  },
 }
 
 // Phase accent colours — used regardless of depth

@@ -115,6 +115,130 @@ export const DOORS = {
   },
 }
 
+// Domain priority ordering per door
+// Maps subjectOrder label → ordered domain list (first = highest priority)
+// Unlisted domains appear after the prioritised ones in alphabetical order
+export const DOOR_DOMAIN_ORDER = {
+  curiosity_first: [
+    'Philosophy & Epistemology',
+    'Meditation & Contemplative Arts',
+    'Alchemy & Transformation',
+    'Buddhist Deep Practice',
+    'Dream Work',
+    'Divination & Symbolic Systems',
+    'Sacred Geometry & Mathematics',
+    'Taoism & Chinese Wisdom',
+  ],
+  foundations_first: [
+    'Philosophy & Epistemology',
+    'Breathwork & Pranayama',
+    'Meditation & Contemplative Arts',
+    'Movement & Somatic',
+    'Practical Sovereignty',
+    'AI & Technology',
+    'Shadow Work & Psychology',
+    'Alchemy & Transformation',
+  ],
+  healing_first: [
+    'Shadow Work & Psychology',
+    'Death Work & Grief',
+    'Movement & Somatic',
+    'Breathwork & Pranayama',
+    'Energy Healing',
+    'Meditation & Contemplative Arts',
+    'African Spiritual Traditions',
+    'Indigenous Knowledge Systems',
+  ],
+  mechanisms_first: [
+    'Philosophy & Epistemology',
+    'Breathwork & Pranayama',
+    'Meditation & Contemplative Arts',
+    'Movement & Somatic',
+    'AI & Technology',
+    'Sound, Vibration & Cymatics',
+    'Sacred Geometry & Mathematics',
+    'The Dismissed Pioneers',
+  ],
+  depth_first: [
+    'Meditation & Contemplative Arts',
+    'Alchemy & Transformation',
+    'Kabbalah & Tree of Life',
+    'Sufism & Islamic Mysticism',
+    'Buddhist Deep Practice',
+    'Hindu Philosophy & Yoga',
+    'Christian Mysticism',
+    'Taoism & Chinese Wisdom',
+  ],
+  gatekeeping_first: [
+    'The Dismissed Pioneers',
+    'Indigenous Knowledge Systems',
+    'African Spiritual Traditions',
+    'Shadow Work & Psychology',
+    'Plant Medicine',
+    'Alchemy & Transformation',
+    'Practical Sovereignty',
+    'Philosophy & Epistemology',
+  ],
+  creativity_first: [
+    'Dream Work',
+    'Movement & Somatic',
+    'Sound, Vibration & Cymatics',
+    'Ritual Arts',
+    'Alchemy & Transformation',
+    'Shamanic Arts',
+    'Sacred Geometry & Mathematics',
+    'Divination & Symbolic Systems',
+  ],
+  relational_first: [
+    'African Spiritual Traditions',
+    'Indigenous Knowledge Systems',
+    'Shadow Work & Psychology',
+    'Sacred Sexuality',
+    'Death Work & Grief',
+    'Energy Healing',
+    'Meditation & Contemplative Arts',
+    'Buddhist Deep Practice',
+  ],
+  integration_first: [
+    'Alchemy & Transformation',
+    'Philosophy & Epistemology',
+    'Death Work & Grief',
+    'Buddhist Deep Practice',
+    'Taoism & Chinese Wisdom',
+    'Shadow Work & Psychology',
+    'Meditation & Contemplative Arts',
+    'Kabbalah & Tree of Life',
+  ],
+  remedial_first: [
+    'Meditation & Contemplative Arts',
+    'Breathwork & Pranayama',
+    'Philosophy & Epistemology',
+    'Shadow Work & Psychology',
+    'Movement & Somatic',
+    'Practical Sovereignty',
+    'Alchemy & Transformation',
+    'Buddhist Deep Practice',
+  ],
+}
+
+// Sort domain names according to the user's door priority
+// Unranked domains appear after prioritised ones, alphabetically
+export function sortDomainsByDoor(domains, doorKey) {
+  const door = DOORS[doorKey]
+  if (!door) return domains
+  const order = DOOR_DOMAIN_ORDER[door.subjectOrder] || []
+  const ranked = order.filter(d => domains.includes(d))
+  const unranked = domains.filter(d => !order.includes(d)).sort()
+  return [...ranked, ...unranked]
+}
+
+// Get the prioritised domains for a door (top 3 for label display)
+export function getDoorPriorityDomains(doorKey, count = 3) {
+  const door = DOORS[doorKey]
+  if (!door) return []
+  return (DOOR_DOMAIN_ORDER[door.subjectOrder] || []).slice(0, count)
+}
+
 // Get language modifier for a given door
 export function getDoorLanguage(doorKey) {
   return DOORS[doorKey] || DOORS.SEEKER

@@ -1,0 +1,531 @@
+/* ─── Layout ──────────────────────────────────────────── */
+.practice-layout {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ─── Sidebar ─────────────────────────────────────────── */
+.practice-sidebar {
+  width: 280px;
+  min-width: 280px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.practice-sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 16px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.practice-header-glyph { font-size: 26px; }
+.practice-title { font-size: 20px; color: var(--text-bright); }
+.practice-subtitle { font-size: 12px; margin-top: 2px; }
+
+.practice-domain-filters {
+  display: flex;
+  gap: 6px;
+  padding: 12px 12px 8px;
+  flex-wrap: wrap;
+}
+
+.practice-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 8px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.practice-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.practice-item:hover { background: var(--card); border-color: var(--border); }
+.practice-item--active { background: var(--accent-soft); border-color: var(--border); }
+
+.practice-item-glyph { font-size: 18px; width: 24px; text-align: center; flex-shrink: 0; }
+.practice-item-name { font-size: 13.5px; color: var(--text-bright); font-weight: 500; }
+.practice-item-meta { font-size: 11px; margin-top: 2px; }
+
+/* ─── Main ────────────────────────────────────────────── */
+.practice-main {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── Empty ───────────────────────────────────────────── */
+.practice-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  padding: 60px;
+}
+.practice-empty-glyph { font-size: 48px; opacity: 0.4; }
+.practice-empty h2 { font-size: 24px; color: var(--text-bright); }
+.practice-empty p { font-size: 15px; line-height: 1.7; max-width: 360px; }
+
+/* ─── Warning ─────────────────────────────────────────── */
+.practice-warning {
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: rgba(200, 80, 80, 0.08);
+  border: 1px solid rgba(200, 80, 80, 0.25);
+  color: var(--text);
+  font-size: 13px;
+  max-width: 560px;
+  text-align: center;
+}
+
+/* ─── Breathwork & Meditation shared ─────────────────── */
+.breathwork-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  padding: 40px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.breathwork-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+
+.breathwork-glyph { font-size: 32px; }
+.breathwork-title { font-size: 26px; color: var(--text-bright); }
+.breathwork-desc { font-size: 14px; line-height: 1.6; margin-top: 4px; max-width: 440px; }
+
+.breathwork-circle-wrap {
+  width: 220px;
+  height: 220px;
+  flex-shrink: 0;
+}
+
+.breathwork-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.breathwork-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.breathwork-btn {
+  padding: 12px 32px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #000 !important;
+  min-width: 120px;
+}
+
+.breathwork-time {
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+/* ─── Meditation duration picker ──────────────────────── */
+.meditation-duration {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.meditation-dur-label {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.meditation-dur-options {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.meditation-dur-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 13px;
+  transition: all 0.12s;
+}
+.meditation-dur-btn:hover { opacity: 1; border-color: var(--accent); color: var(--text); }
+.meditation-dur-btn--active { background: var(--accent-soft); font-weight: 600; }
+
+/* ─── Complete card ───────────────────────────────────── */
+.practice-complete-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 32px;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.practice-complete-glyph { font-size: 36px; }
+.practice-complete-text { font-size: 18px; color: var(--text-bright); }
+
+/* ─── Shadow work ─────────────────────────────────────── */
+.shadow-view {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 40px;
+  width: 100%;
+  max-width: 680px;
+}
+
+.shadow-session {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.shadow-progress {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.shadow-progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.shadow-prompt-card {
+  padding: 20px 24px;
+  border-left: 3px solid var(--accent);
+  background: var(--card);
+  border-radius: 0 12px 12px 0;
+}
+
+.shadow-prompt-num {
+  font-size: 11px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.shadow-prompt-text {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--text-bright);
+}
+
+.shadow-textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 14px;
+  font-family: Georgia, serif;
+  line-height: 1.75;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.shadow-textarea:focus { border-color: var(--accent); }
+.shadow-textarea::placeholder { color: var(--text-dim); font-style: italic; }
+
+.shadow-next-btn {
+  align-self: flex-start;
+  padding: 11px 28px;
+  font-weight: 600;
+  color: #000 !important;
+}
+
+.shadow-complete {
+  max-width: 400px;
+  align-self: center;
+}
+
+/* ─── Contemplation Timer ─────────────────────────────── */
+.contemplation-question-block {
+  border-left: 3px solid var(--accent);
+  padding: 16px 20px;
+  background: var(--card);
+  border-radius: 0 10px 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contemplation-question-label {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.contemplation-question {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text-bright);
+  margin: 0;
+}
+
+.contemplation-rotate {
+  background: transparent;
+  font-size: 12px;
+  cursor: pointer;
+  align-self: flex-start;
+  padding: 0;
+  transition: color 0.12s;
+}
+.contemplation-rotate:hover { color: var(--text); }
+
+/* ─── Walking Meditation ──────────────────────────────── */
+.walking-cue {
+  padding: 14px 20px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+  background: var(--card);
+  font-size: 15px;
+  font-family: Georgia, serif;
+  color: var(--text-bright);
+  line-height: 1.6;
+  animation: cue-fade 0.4s ease;
+}
+
+@keyframes cue-fade {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Practice item wrap (for delete button) ──────────── */
+.practice-item-wrap {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+.practice-item-wrap .practice-item {
+  flex: 1;
+  padding-right: 32px;
+}
+.practice-item-delete {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.practice-item-wrap:hover .practice-item-delete { opacity: 1; }
+.practice-item-delete:hover { color: rgb(200,80,80); }
+
+.practice-item--create {
+  border: 1px dashed var(--border) !important;
+  background: transparent !important;
+}
+.practice-item--create:hover { border-color: var(--accent) !important; }
+
+/* ─── Breathwork Builder ──────────────────────────────── */
+.bwb-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 40px;
+  width: 100%;
+  max-width: 560px;
+}
+
+.bwb-presets {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bwb-presets-label {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.bwb-preset-btns {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.bwb-preset-btn {
+  padding: 5px 12px;
+  border-radius: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.bwb-preset-btn:hover { color: var(--text); border-color: var(--accent); }
+
+.bwb-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bwb-field-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bwb-label { font-size: 12px; letter-spacing: 0.3px; }
+.bwb-value { font-size: 14px; font-weight: 600; }
+
+.bwb-slider {
+  width: 100%;
+  accent-color: var(--accent);
+  cursor: pointer;
+  height: 4px;
+}
+
+.bwb-name-input {
+  padding: 8px 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.bwb-name-input:focus { border-color: var(--accent); }
+.bwb-name-input::placeholder { color: var(--text-dim); }
+
+.bwb-ratio-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bwb-ratio-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; }
+
+.bwb-ratio-bars {
+  display: flex;
+  gap: 2px;
+  height: 48px;
+  align-items: flex-end;
+}
+
+.bwb-ratio-segment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 30px;
+}
+
+.bwb-ratio-bar {
+  width: 100%;
+  height: 24px;
+  border-radius: 4px;
+  opacity: 0.7;
+}
+
+.bwb-ratio-seg-label { font-size: 10px; white-space: nowrap; }
+.bwb-cycle-info { font-size: 12px; margin-top: 4px; }
+
+.bwb-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* ─── Responsive ──────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .practice-sidebar { width: 240px; min-width: 240px; }
+}
+
+@media (max-width: 960px) {
+  .practice-sidebar { width: 200px; min-width: 200px; }
+  .practice-item-name { font-size: 12.5px; }
+}
+
+@media (min-width: 1600px) {
+  .practice-sidebar { width: 320px; min-width: 320px; }
+  .breathwork-view, .shadow-view, .bwb-wrap { max-width: 720px; }
+}
+
+/* Shadow work progression panel */
+.shadow-stage-panel {
+  margin: 0 0 16px 0;
+  padding: 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.shadow-stage-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.shadow-stage-glyph { font-size: 22px; }
+.shadow-stage-name { font-size: 14px; color: var(--text-primary); font-weight: 500; }
+.shadow-stage-count { font-size: 11px; margin-top: 2px; }
+.shadow-stage-desc { font-size: 12px; line-height: 1.5; }
+.shadow-stage-next { font-size: 11px; }
+.shadow-stage-pips {
+  display: flex;
+  gap: 5px;
+  margin-top: 4px;
+}
+.shadow-stage-pip {
+  width: 28px;
+  height: 4px;
+  border-radius: 2px;
+  transition: background 0.3s;
+}

@@ -1,0 +1,168 @@
+.rite-initiation-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-primary, #0A0A12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 950;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.rite-init-content {
+  max-width: 520px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+  padding: 1rem 0 3rem;
+}
+
+.rite-init-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.rite-init-glyph {
+  font-size: 2rem;
+  color: var(--accent, #C9A84C);
+  opacity: 0.85;
+}
+
+.rite-init-title {
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--text-primary, #E8E4DC);
+  letter-spacing: 0.1em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.rite-init-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary, #9090A0);
+  margin: 0;
+}
+
+.rite-init-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary, #9090A0);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+
+.rite-init-scroll {
+  width: 100%;
+  max-height: 280px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0.75rem;
+  background: var(--bg-secondary, #12121E);
+  border: 1px solid var(--border, #2A2A3E);
+  border-radius: 8px;
+  text-align: left;
+}
+
+.rite-journey-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--border-dim, #1A1A2E);
+}
+
+.rite-journey-row:last-child { border-bottom: none; }
+.rite-journey-row--stat { opacity: 0.65; }
+
+.rite-journey-glyph {
+  font-size: 0.85rem;
+  color: var(--accent, #C9A84C);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.rite-journey-name {
+  font-size: 0.875rem;
+  color: var(--text-primary, #E8E4DC);
+  line-height: 1.4;
+}
+
+.rite-journey-note {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  margin-top: 0.2rem;
+  font-style: italic;
+}
+
+.rite-init-scroll-hint {
+  font-size: 0.78rem;
+  margin: -0.75rem 0 0;
+  font-style: italic;
+}
+
+.rite-init-address {
+  font-size: 1rem;
+  color: var(--text-primary, #E8E4DC);
+  line-height: 1.8;
+  text-align: center;
+  max-width: 440px;
+  font-style: italic;
+  padding: 1rem;
+  border-left: 2px solid var(--accent, #C9A84C);
+  opacity: 0.9;
+}
+
+.rite-init-sigil {
+  color: var(--accent, #C9A84C);
+  width: 140px;
+  height: 140px;
+  opacity: 0.9;
+  animation: sigil-appear 1.2s ease-out forwards;
+}
+
+.rite-init-sigil svg { width: 100%; height: 100%; }
+
+@keyframes sigil-appear {
+  0%   { opacity: 0; transform: scale(0.7) rotate(-10deg); }
+  60%  { opacity: 1; transform: scale(1.05) rotate(2deg); }
+  100% { opacity: 0.9; transform: scale(1) rotate(0deg); }
+}
+
+.rite-init-sigil-note {
+  font-size: 0.78rem;
+  font-style: italic;
+  max-width: 340px;
+  line-height: 1.6;
+}
+
+.rite-init-btn {
+  width: 100%;
+  max-width: 280px;
+  padding: 0.875rem;
+  background: transparent;
+  border: 1px solid var(--accent, #C9A84C);
+  color: var(--accent, #C9A84C);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+  font-family: inherit;
+  letter-spacing: 0.05em;
+}
+
+.rite-init-btn:hover:not(:disabled) {
+  background: rgba(201, 168, 76, 0.1);
+}
+
+.rite-init-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}

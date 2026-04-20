@@ -1,0 +1,25 @@
+.placeholder-view {
+  height: 100%;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 60px;
+}
+
+.placeholder-glyph {
+  font-size: 48px;
+  color: var(--glyph);
+  opacity: 0.5;
+}
+
+.placeholder-view h2 {
+  font-size: 24px;
+  color: var(--text-bright);
+}
+
+.placeholder-view p {
+  font-size: 15px;
+}

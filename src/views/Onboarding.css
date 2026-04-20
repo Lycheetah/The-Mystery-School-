@@ -1,0 +1,495 @@
+.onboarding-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  background: var(--bg);
+}
+
+.onboarding-card {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  text-align: center;
+}
+
+.onboarding-wide {
+  width: 100%;
+  max-width: 820px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+/* Welcome */
+.welcome-glyph {
+  font-size: 56px;
+  color: var(--glyph);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.welcome-title {
+  font-size: 36px;
+  color: var(--text-bright);
+}
+
+.welcome-sub {
+  font-size: 16px;
+  font-style: italic;
+}
+
+.welcome-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--border);
+}
+
+.welcome-body {
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.7;
+  max-width: 440px;
+}
+
+.welcome-crisis {
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.onboarding-btn {
+  min-width: 200px;
+  padding: 14px 28px;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+}
+
+.onboarding-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Doors */
+.door-heading {
+  font-size: 28px;
+  color: var(--text-bright);
+}
+
+.door-sub {
+  font-size: 15px;
+  max-width: 480px;
+  text-align: center;
+}
+
+.door-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  width: 100%;
+}
+
+.door-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 12px;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 12px;
+  text-align: center;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+
+.door-card:hover {
+  opacity: 1;
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.door-card--selected {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--text-bright);
+}
+
+.door-glyph {
+  font-size: 20px;
+  color: var(--glyph);
+}
+
+.door-name {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.door-hook {
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+/* Assessment */
+.assessment-card {
+  text-align: left;
+  max-width: 600px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.phase-label {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.assessment-question {
+  font-size: 22px;
+  color: var(--text-bright);
+  line-height: 1.5;
+  margin: 8px 0;
+}
+
+.score-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.score-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 8px;
+  border-radius: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  transition: all 0.15s;
+}
+
+.score-btn:hover {
+  opacity: 1;
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.score-num {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-bright);
+  font-family: Georgia, serif;
+}
+
+.score-label {
+  font-size: 11px;
+  letter-spacing: 0.3px;
+  text-align: center;
+}
+
+.back-btn {
+  align-self: flex-start;
+  font-size: 13px;
+}
+
+/* Depth */
+.depth-heading {
+  font-size: 26px;
+  color: var(--text-bright);
+}
+
+.depth-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.depth-option {
+  padding: 16px 20px;
+  border-radius: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 15px;
+  text-align: left;
+  transition: all 0.15s;
+}
+
+.depth-option:hover {
+  opacity: 1;
+  border-color: var(--accent);
+  color: var(--text-bright);
+}
+
+.depth-option--selected {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--text-bright);
+}
+
+/* Result */
+.result-card {
+  max-width: 600px;
+  text-align: center;
+}
+
+.result-glyph {
+  font-size: 52px;
+  animation: glyph-in 0.8s ease-out;
+}
+
+@keyframes glyph-in {
+  from { transform: scale(0.3); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.result-phase {
+  font-size: 28px;
+}
+
+.result-depth {
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.result-coordinates {
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.nigredo-notice {
+  background: var(--flame);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  font-size: 14px;
+  color: var(--text-bright);
+  line-height: 1.6;
+  text-align: left;
+  max-width: 480px;
+}
+
+.score-bars {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.score-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.score-bar-glyph { width: 28px; text-align: center; font-size: 14px; }
+.score-bar-name  { width: 70px; font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; }
+
+.score-bar-track {
+  flex: 1;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+.score-bar-pct {
+  width: 24px;
+  font-size: 11px;
+  text-align: right;
+  font-family: 'Courier New', monospace;
+}
+
+/* ─── Phase shift ceremony ─────────────────────────────── */
+.ceremony-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #080810;   /* always absolute dark — not theme-dependent */
+  padding: 40px 24px;
+}
+
+.ceremony-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  max-width: 520px;
+  text-align: center;
+}
+
+/* Transition arc */
+.ceremony-arc {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.ceremony-from {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.35;
+}
+
+.ceremony-glyph-from {
+  font-size: 36px;
+}
+
+.ceremony-phase-name-from {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.ceremony-arrow {
+  font-size: 24px;
+  opacity: 0.3;
+}
+
+.ceremony-to {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.ceremony-to--revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ceremony-glyph-to {
+  font-size: 64px;
+  animation: ceremony-pulse 3s ease-in-out infinite;
+}
+
+@keyframes ceremony-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+
+.ceremony-phase-name-to {
+  font-size: 26px;
+  letter-spacing: 2px;
+}
+
+/* Text elements — staggered fade in */
+.ceremony-operation,
+.ceremony-depth,
+.ceremony-threshold,
+.ceremony-nigredo,
+.ceremony-btn {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s;
+}
+
+.ceremony-fade-in {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.ceremony-operation {
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.ceremony-depth {
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.ceremony-threshold {
+  font-size: 19px;
+  line-height: 1.7;
+  color: #C8C4DC;
+  max-width: 420px;
+  font-style: italic;
+}
+
+.ceremony-nigredo {
+  background: rgba(180, 60, 60, 0.12);
+  border: 1px solid rgba(180, 60, 60, 0.3);
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 13px;
+  color: #C07070;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+.ceremony-btn {
+  padding: 14px 40px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 100px;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s, filter 0.2s;
+}
+
+.ceremony-btn:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.ceremony-btn:disabled {
+  cursor: not-allowed;
+}
+
+/* ─── Responsive ──────────────────────────────────────── */
+/* Door grid: 3-col at narrow windows, 5-col is default */
+@media (max-width: 1100px) {
+  .door-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 960px) {
+  .door-grid { grid-template-columns: repeat(2, 1fr); }
+  .welcome-title { font-size: 28px; }
+}
+
+/* Wide: keep card widths sane */
+@media (min-width: 1600px) {
+  .onboarding-card { max-width: 620px; }
+  .onboarding-wide { max-width: 1000px; }
+}

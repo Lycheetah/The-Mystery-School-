@@ -1,0 +1,642 @@
+/* ─── Layout ──────────────────────────────────────────── */
+.spiral-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ─── Header ──────────────────────────────────────────── */
+.spiral-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.spiral-title-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.spiral-glyph { font-size: 28px; }
+.spiral-title { font-size: 22px; color: var(--text-bright); }
+.spiral-subtitle { font-size: 12.5px; margin-top: 2px; }
+
+/* ─── Stats ───────────────────────────────────────────── */
+.spiral-stats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.spiral-stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.spiral-stat-glyph { font-size: 14px; }
+
+.spiral-stat-total {
+  margin-left: auto;
+  font-size: 14px;
+}
+
+/* ─── Progress bar ────────────────────────────────────── */
+.spiral-overall-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.spiral-bar-track {
+  flex: 1;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  display: flex;
+}
+
+.spiral-bar-seg {
+  height: 100%;
+  transition: width 0.4s;
+}
+
+.spiral-bar-pct {
+  font-size: 12px;
+  width: 36px;
+  text-align: right;
+}
+
+/* ─── Domain filters ──────────────────────────────────── */
+.spiral-domain-filters {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+/* ─── Domain grid ─────────────────────────────────────── */
+.spiral-grid {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+  align-content: start;
+}
+
+/* ─── Domain card ─────────────────────────────────────── */
+.domain-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color 0.15s;
+}
+
+.domain-card:hover { border-color: var(--accent); }
+
+.domain-card--expanded {
+  max-width: 100%;
+}
+
+.domain-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.domain-glyph { font-size: 20px; margin-top: 1px; }
+
+.domain-card-info { flex: 1; }
+
+.domain-card-name {
+  font-size: 13px;
+  color: var(--text-bright);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.domain-card-meta { font-size: 11px; margin-top: 3px; }
+
+/* ─── Mini bar ────────────────────────────────────────── */
+.domain-mini-bar {
+  height: 2px;
+  background: var(--border);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.domain-mini-fill {
+  height: 100%;
+  border-radius: 1px;
+  transition: width 0.4s;
+  opacity: 0.8;
+}
+
+/* ─── Subject dots ────────────────────────────────────── */
+.domain-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+.domain-dot {
+  font-size: 14px;
+  cursor: default;
+  transition: transform 0.1s;
+  line-height: 1;
+}
+
+.domain-dot:hover {
+  transform: scale(1.4);
+}
+
+/* ─── Tooltip ─────────────────────────────────────────── */
+.spiral-tooltip {
+  position: absolute;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 12.5px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* ─── Easter egg banner ───────────────────────────────── */
+.spiral-egg-banner {
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: #E8C86A;
+  margin-top: 6px;
+  animation: egg-fade-in 0.4s ease;
+}
+
+@keyframes egg-fade-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── View tabs ───────────────────────────────────────── */
+.spiral-view-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.spiral-view-tab {
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.spiral-view-tab:hover { color: var(--text); border-color: var(--accent); }
+.spiral-view-tab--active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--text-bright);
+}
+
+/* ─── Practice Stats ──────────────────────────────────── */
+.practice-stats {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 860px;
+}
+
+.practice-stats-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.pstats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.pstat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 20px 12px;
+  text-align: center;
+}
+
+.pstat-value {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.pstat-suffix {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.pstat-label {
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.pstats-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pstats-section-label {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* Histogram */
+.pstats-histogram {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 52px;
+}
+
+.pstats-bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.pstats-bar {
+  border-radius: 2px 2px 0 0;
+  min-height: 2px;
+  transition: height 0.3s ease;
+}
+
+.pstats-histogram-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  margin-top: 4px;
+}
+
+/* By type */
+.pstats-type-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pstats-type-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pstats-type-glyph { font-size: 16px; flex-shrink: 0; }
+.pstats-type-name  { font-size: 13px; min-width: 120px; }
+
+.pstats-type-bar-wrap {
+  flex: 1;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.pstats-type-bar {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+.pstats-type-count { font-size: 12px; min-width: 28px; text-align: right; }
+.pstats-type-mins  { font-size: 11px; min-width: 36px; }
+
+/* By phase */
+.pstats-phase-dots {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  height: 56px;
+}
+
+.pstats-phase-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.pstats-phase-bar-wrap {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  height: 44px;
+}
+
+.pstats-phase-fill {
+  width: 100%;
+  border-radius: 2px;
+  min-height: 2px;
+  transition: height 0.4s ease;
+}
+
+/* ─── Constellation ───────────────────────────────────────── */
+.constellation-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg);
+  position: relative;
+}
+
+.constellation-legend {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 8px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.constellation-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.constellation-svg {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Codex — door crossings */
+.codex-crossings {
+  margin: 24px 24px 0;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.codex-crossings-title {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+.codex-crossing-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.codex-crossing-entry:last-child { border-bottom: none; }
+.codex-crossing-glyphs { font-size: 20px; padding-top: 2px; min-width: 60px; }
+.codex-crossing-name { font-size: 14px; color: var(--text-primary); }
+.codex-crossing-date { font-size: 12px; margin-top: 3px; }
+.codex-crossing-intention { font-size: 13px; font-style: italic; margin-top: 6px; }
+
+/* ─── Evidence Panel ─────────────────────────────────────── */
+.evidence-panel {
+  padding: 0 24px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.evidence-empty {
+  padding: 80px 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.evidence-empty-glyph { font-size: 40px; opacity: 0.4; }
+
+.evidence-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.evidence-band-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.evidence-band-chip:hover { color: var(--text); }
+.evidence-band-chip--active { background: var(--accent-soft); }
+
+.evidence-band-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.evidence-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.evidence-sort-btn {
+  background: none;
+  border: none;
+  padding: 2px 6px;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--text-dim);
+  transition: color 0.12s;
+}
+.evidence-sort-btn--active { font-weight: 600; }
+
+.evidence-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.evidence-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  gap: 12px;
+}
+
+.evidence-row-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.evidence-pi {
+  font-size: 13px;
+  min-width: 44px;
+  flex-shrink: 0;
+}
+
+.evidence-subject-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.evidence-subject-name {
+  font-size: 13px;
+  color: var(--text-bright);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.evidence-subject-domain {
+  font-size: 11px;
+  margin-top: 1px;
+}
+
+.evidence-band-label {
+  font-size: 11px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.evidence-footer {
+  font-size: 12px;
+  font-style: italic;
+  line-height: 1.5;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
+/* ─── Somatic Heat Map ─────────────────────────────────── */
+
+.somatic-heatmap {
+  padding: 1.5rem;
+}
+
+.somatic-heatmap-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.somatic-heatmap-title {
+  font-size: 1rem;
+  color: var(--text-primary, #E8E4DC);
+  font-family: Georgia, serif;
+}
+
+.somatic-heatmap-body {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.somatic-svg {
+  width: 140px;
+  flex-shrink: 0;
+}
+
+.somatic-legend {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.somatic-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.4rem 0.75rem;
+  background: var(--bg-secondary, #12121E);
+  border-radius: 6px;
+  border-left: 2px solid var(--accent, #C9A84C);
+}
+
+.somatic-legend-label {
+  font-size: 0.85rem;
+  color: var(--text-primary, #E8E4DC);
+  flex: 1;
+}
+
+.somatic-legend-count {
+  font-size: 0.85rem;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+}
+
+.somatic-legend-quality {
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.somatic-empty {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

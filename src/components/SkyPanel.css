@@ -1,0 +1,115 @@
+.sky-panel {
+  border: 1px solid var(--border, #2A2A3E);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg-secondary, #12121E);
+}
+
+.sky-panel-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+}
+
+.sky-toggle-moon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.sky-toggle-label {
+  flex: 1;
+  font-size: 0.82rem;
+  color: var(--text-secondary, #9090A0);
+}
+
+.sky-rx-badge,
+.sky-threshold-badge {
+  color: var(--accent, #C9A84C);
+  margin-left: 0.25rem;
+}
+
+.sky-toggle-chevron {
+  font-size: 0.7rem;
+  color: var(--text-secondary, #9090A0);
+  flex-shrink: 0;
+}
+
+.sky-panel-body {
+  border-top: 1px solid var(--border, #2A2A3E);
+  padding: 0.75rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sky-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.sky-section-head {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.1rem;
+}
+
+.sky-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.sky-glyph {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  width: 1.2rem;
+  text-align: center;
+}
+
+.sky-label {
+  font-size: 0.82rem;
+  color: var(--text-primary, #E8E4DC);
+}
+
+.sky-dim {
+  font-size: 0.75rem;
+}
+
+.sky-threshold-note {
+  line-height: 1.4;
+  margin-top: 0.1rem;
+}
+
+.sky-rx-row {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+}
+
+.sky-rx-planet {
+  font-size: 0.82rem;
+  color: var(--accent, #C9A84C);
+  font-style: italic;
+}
+
+.sky-ceremony-note {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.5rem 0.6rem;
+  background: rgba(201, 168, 76, 0.06);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: var(--accent, #C9A84C);
+  font-style: italic;
+}

@@ -1,0 +1,400 @@
+.settings-view {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.settings-title {
+  font-size: 28px;
+  color: var(--text-bright);
+}
+
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.settings-heading {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ─── API Keys ────────────────────────────────────────── */
+.api-key-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.api-key-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.api-key-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.api-key-name { font-size: 13px; font-weight: 600; color: var(--text-bright); }
+.api-key-hint { font-size: 11px; margin-top: 1px; }
+
+.api-key-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.api-key-input {
+  flex: 1;
+  padding: 7px 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 13px;
+  font-family: 'Courier New', monospace;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.api-key-input:focus { border-color: var(--accent); }
+.api-key-input::placeholder { color: var(--text-dim); font-family: inherit; }
+
+.api-key-saved {
+  font-size: 12px;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* ─── Door grid ───────────────────────────────────────── */
+.door-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.door-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 13px;
+  transition: all 0.15s;
+}
+
+.door-chip:hover {
+  opacity: 1;
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.door-chip--active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--text-bright);
+}
+
+/* ─── Sound controls ──────────────────────────────────── */
+.sound-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sound-toggle-btn {
+  padding: 5px 18px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text-dim);
+  font-size: 13px;
+  font-family: 'Courier New', monospace;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.sound-toggle-btn--on {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.sound-volume-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sound-volume-slider {
+  flex: 1;
+  accent-color: var(--accent);
+  height: 4px;
+  cursor: pointer;
+}
+
+/* ─── Depth theme ─────────────────────────────────────── */
+.depth-theme-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.depth-theme-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 8px;
+  border-radius: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.depth-theme-card:hover { border-color: var(--accent); }
+.depth-theme-card--active { background: var(--accent-soft); }
+
+.depth-theme-swatch {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.depth-theme-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.5px;
+}
+
+/* ─── Data backup ─────────────────────────────────────── */
+.data-backup-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.data-import-label {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Door transition ritual modal */
+.ritual-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,10,18,0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9000;
+  backdrop-filter: blur(8px);
+}
+.ritual-modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 44px 40px 36px;
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+.ritual-glyph { font-size: 28px; letter-spacing: 0.1em; }
+.ritual-title { font-size: 20px; color: var(--text-primary); margin: 0; }
+.ritual-desc  { font-size: 14px; margin: 0; line-height: 1.6; }
+.ritual-intention {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  color: var(--text-primary);
+  font-size: 14px;
+  resize: none;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+.ritual-intention:focus { outline: none; border-color: var(--text-dim); }
+.ritual-btns { display: flex; gap: 12px; width: 100%; }
+.ritual-cancel {
+  flex: 1;
+  padding: 10px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 13px;
+}
+.ritual-cancel:hover { border-color: var(--text-dim); }
+.ritual-proceed {
+  flex: 2;
+  padding: 10px;
+  background: var(--text-primary);
+  border: 1px solid var(--text-primary);
+  border-radius: 8px;
+  color: #0A0A12;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+.ritual-proceed:hover { opacity: 0.88; }
+.door-crossings { margin-top: 12px; }
+.door-crossing-record { font-size: 13px; padding: 4px 0; }
+
+/* Insight manager */
+.insight-manager-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+}
+.insight-clear-all {
+  font-size: 12px;
+  color: var(--text-dim);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.insight-clear-all:hover { color: rgb(200,80,80); border-color: rgba(200,80,80,0.4); }
+.insight-list { display: flex; flex-direction: column; gap: 12px; }
+.insight-entry {
+  padding: 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.insight-entry-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.insight-topic { font-size: 14px; color: var(--text-primary); flex: 1; }
+.insight-delete {
+  background: none; border: none; color: var(--text-dim);
+  cursor: pointer; font-size: 18px; line-height: 1; padding: 0 4px;
+  opacity: 0.5; transition: opacity 0.2s;
+}
+.insight-delete:hover { opacity: 1; }
+.insight-date { font-size: 12px; margin-top: 4px; }
+.insight-statements { margin-top: 10px; display: flex; flex-direction: column; gap: 4px; }
+.insight-statement { font-size: 13px; font-style: italic; }
+
+/* Language + Age Mode + Parental Mode */
+.age-mode-grid {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.age-mode-chip {
+  padding: 8px 16px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.18s;
+}
+.age-mode-chip:hover { color: var(--text-primary); border-color: var(--text-dim); }
+.age-mode-chip--active {
+  background: rgba(200,169,110,0.12);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.age-mode-list { display: flex; flex-direction: column; gap: 8px; }
+.age-mode-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.18s;
+  gap: 12px;
+}
+.age-mode-row:hover { border-color: var(--text-dim); }
+.age-mode-row--active {
+  background: rgba(200,169,110,0.08);
+  border-color: var(--gold);
+}
+.age-mode-row-left { display: flex; flex-direction: column; gap: 3px; }
+.age-mode-label { font-size: 14px; color: var(--text-primary); }
+.age-mode-desc { font-size: 12px; }
+.age-mode-check { color: var(--gold); font-size: 16px; }
+
+/* --- Sovereign Tier --- */
+.sovereign-section { border-color: #9060D8; }
+.sovereign-heading { color: #A870F0; display: flex; align-items: center; gap: 10px; }
+.sovereign-badge {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  background: rgba(144, 96, 216, 0.2);
+  color: #A870F0;
+  border: 1px solid #9060D8;
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+.sovereign-perks { display: flex; flex-direction: column; gap: 10px; }
+.sovereign-perks--preview { opacity: 0.6; }
+.sovereign-perk { display: flex; align-items: flex-start; gap: 12px; }
+.sovereign-perk--locked .sovereign-perk-label { color: var(--text-dim); }
+.sovereign-perk-glyph { font-size: 18px; color: #A870F0; min-width: 24px; }
+.sovereign-perk-label { font-size: 14px; color: var(--text-primary); font-weight: 600; }
+.sovereign-perk-desc { font-size: 12px; margin-top: 2px; }
+.sovereign-unlock-row { display: flex; gap: 10px; margin-top: 16px; }
+.sovereign-code-input {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+.sovereign-code-input:focus { outline: none; border-color: #9060D8; }
+.sovereign-unlock-btn { border-color: #9060D8; color: #A870F0; }
+.sovereign-unlock-btn:hover { background: rgba(144, 96, 216, 0.15); }
+.sovereign-error { font-size: 13px; color: var(--flame); margin-top: 6px; }
+.sovereign-glyph-row { display: flex; align-items: center; gap: 12px; }
+.sovereign-glyph-input {
+  width: 80px;
+  background: var(--surface);
+  border: 1px solid #9060D8;
+  color: #A870F0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 20px;
+  text-align: center;
+}
+.sovereign-glyph-input:focus { outline: none; border-color: #A870F0; }
+.sovereign-glyph-preview { font-size: 28px; color: #E8C040; }
+.depth-theme-card--sovereign { border-color: #9060D8 !important; }
+.depth-theme-sovereign-tag { font-size: 10px; color: #A870F0; font-family: var(--font-mono); }

@@ -1,0 +1,603 @@
+.home-view {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.home-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.greeting {
+  font-size: 28px;
+  color: var(--text-bright);
+  line-height: 1.3;
+}
+
+.coordinates {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.coord-glyph { font-size: 16px; }
+.coord-text  { font-weight: 600; }
+.coord-sep   { font-size: 10px; }
+
+/* Wisdom */
+.wisdom-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wisdom-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.wisdom-text {
+  font-size: 20px;
+  font-style: italic;
+  color: var(--text-bright);
+  line-height: 1.6;
+  border-left: 2px solid var(--accent);
+  padding-left: 16px;
+}
+
+.wisdom-source {
+  font-size: 13px;
+  padding-left: 18px;
+}
+
+/* Stats */
+.home-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 12px;
+  text-align: center;
+}
+
+.stat-num {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+/* Sections */
+.home-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.home-section-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Classroom cards */
+.home-classroom-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.home-classroom-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.home-classroom-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.home-classroom-info { flex: 1; }
+.home-classroom-name { font-size: 14px; font-weight: 600; color: var(--text-bright); }
+.home-classroom-stats { font-size: 12px; margin-top: 2px; }
+.home-classroom-tagline { font-size: 13px; line-height: 1.5; }
+
+.home-classroom-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.home-classroom-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.home-classroom-next {
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* Recommended practice */
+.recommended-practice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  color: inherit;
+}
+
+.recommended-practice:hover {
+  border-color: var(--accent);
+  opacity: 1;
+}
+
+.rec-left {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.rec-label {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.rec-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.rec-desc {
+  font-size: 13px;
+}
+
+.rec-glyph {
+  font-size: 32px;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+/* Quick grid */
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.quick-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  text-align: left;
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius, 10px);
+  padding: 16px;
+  color: inherit;
+}
+
+.quick-card:hover {
+  border-color: var(--accent);
+}
+
+.quick-card--support:hover {
+  border-color: #7060A0;
+  background: rgba(112, 96, 160, 0.05);
+}
+
+.quick-glyph { font-size: 22px; }
+.quick-title { font-size: 15px; font-weight: 600; }
+.quick-desc  { font-size: 13px; }
+
+/* ─── Weekly Pulse ─────────────────────────────────────── */
+.pulse-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  text-align: left;
+}
+
+.pulse-banner:hover { border-color: var(--accent); }
+
+.pulse-banner-glyph { font-size: 20px; }
+
+.pulse-banner-text { flex: 1; }
+
+.pulse-banner-title { font-size: 15px; font-weight: 500; }
+.pulse-banner-sub   { font-size: 12px; margin-top: 2px; }
+.pulse-banner-cta   { font-size: 13px; }
+
+.pulse-modal {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pulse-progress-bar {
+  height: 2px;
+  background: var(--border);
+  border-radius: 1px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.pulse-progress-fill {
+  height: 100%;
+  border-radius: 1px;
+  transition: width 0.3s ease;
+}
+
+.pulse-q-header {
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.pulse-question {
+  font-size: 18px;
+  font-family: var(--font-serif, Georgia, serif);
+  line-height: 1.4;
+}
+
+.pulse-scale-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+}
+
+.pulse-scale {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.pulse-scale-btn {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--text-dim);
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.pulse-scale-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.pulse-scale-btn--active {
+  background: rgba(136,136,204,0.1);
+  font-weight: 600;
+}
+
+.pulse-cancel {
+  align-self: center;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.pulse-result-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.pulse-result-glyph { font-size: 32px; }
+.pulse-result-title { font-size: 18px; font-family: var(--font-serif, Georgia, serif); }
+.pulse-result-sub   { font-size: 14px; max-width: 400px; line-height: 1.5; }
+
+/* ─── Daily Tarot Draw ──────────────────────────────────── */
+.tarot-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.tarot-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px 18px;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.tarot-header:hover {
+  background: rgba(255,255,255,0.02);
+}
+
+.tarot-glyph { font-size: 24px; }
+
+.tarot-header-info { flex: 1; }
+
+.tarot-label {
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.tarot-name {
+  font-size: 17px;
+  font-family: var(--font-serif, Georgia, serif);
+}
+
+.tarot-toggle {
+  font-size: 11px;
+}
+
+.tarot-body {
+  padding: 0 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+  animation: tarot-expand 0.2s ease;
+}
+
+@keyframes tarot-expand {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.tarot-upright {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text);
+  margin: 0;
+}
+
+.tarot-shadow-block {
+  background: rgba(0,0,0,0.15);
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+
+.tarot-shadow-label {
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.tarot-shadow {
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.tarot-question {
+  border-left: 2px solid var(--accent);
+  padding: 8px 14px;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.tarot-question-label {
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+
+/* Lunar phase widget */
+.lunar-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.lunar-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.lunar-glyph { font-size: 28px; }
+.lunar-label { font-size: 11px; letter-spacing: 0.06em; }
+.lunar-name { font-size: 16px; margin-top: 2px; }
+.lunar-rhythm { font-size: 13px; line-height: 1.6; font-style: italic; }
+
+/* ─── Recurring Threads ───────────────────────────────────── */
+.threads-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.threads-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.thread-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.thread-chip:hover {
+  border-color: var(--phase-colour, var(--accent));
+  background: var(--accent-soft);
+}
+
+.thread-word {
+  font-size: 13px;
+  color: var(--text-bright);
+}
+
+.thread-count {
+  font-size: 11px;
+  font-family: var(--font-mono, monospace);
+  min-width: 14px;
+  text-align: right;
+}
+
+.threads-hint {
+  font-size: 11px;
+  font-style: italic;
+}
+
+/* Oracle home card */
+.oracle-home-card {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  width: 100%;
+  text-align: left;
+  background: var(--bg-secondary, #12121E);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  font-family: inherit;
+}
+
+.oracle-home-card:hover {
+  border-color: rgba(201, 168, 76, 0.5);
+  background: rgba(201, 168, 76, 0.04);
+}
+
+.oracle-home-card--used {
+  opacity: 0.55;
+}
+
+.oracle-home-glyph {
+  font-size: 1.3rem;
+  color: var(--accent, #C9A84C);
+  flex-shrink: 0;
+}
+
+.oracle-home-label {
+  font-size: 0.88rem;
+  color: var(--text-primary, #E8E4DC);
+  letter-spacing: 0.04em;
+}
+
+.oracle-home-sub {
+  font-size: 0.75rem;
+  margin-top: 0.15rem;
+  font-style: italic;
+}
+
+/* Wheel of the Year banner */
+.wheel-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  background: var(--bg-secondary, #12121E);
+  border: 1px solid var(--border, #2A2A3E);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  transition: background 0.15s;
+}
+
+.wheel-banner:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.wheel-banner-glyph {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.wheel-banner-name {
+  font-size: 0.88rem;
+  color: var(--text-primary, #E8E4DC);
+}
+
+.wheel-banner-sub {
+  font-size: 0.75rem;
+  margin-top: 0.15rem;
+  font-style: italic;
+}
+
+/* Active ceremony banner */
+.ceremony-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  background: rgba(139, 122, 204, 0.06);
+  border: 1px solid rgba(139, 122, 204, 0.3);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  transition: background 0.15s;
+}
+
+.ceremony-banner:hover {
+  background: rgba(139, 122, 204, 0.1);
+}
+
+.ceremony-banner-glyph {
+  font-size: 1.2rem;
+  color: #8B7ACC;
+  flex-shrink: 0;
+}
+
+.ceremony-banner-label {
+  font-size: 0.88rem;
+  color: var(--text-primary, #E8E4DC);
+}
+
+.ceremony-banner-sub {
+  font-size: 0.75rem;
+  margin-top: 0.15rem;
+  font-style: italic;
+  text-transform: capitalize;
+}

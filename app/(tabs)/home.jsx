@@ -37,8 +37,13 @@ export default function Home() {
     <View style={[styles.root, { backgroundColor: theme.bg }]}>
       <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
 
-        {/* Door greeting */}
-        <Text style={[styles.greeting, { color: theme.textDim }]}>{greeting}</Text>
+        {/* Header row */}
+        <View style={styles.topRow}>
+          <Text style={[styles.greeting, { color: theme.textDim }]}>{greeting}</Text>
+          <TouchableOpacity onPress={() => router.push('/settings')} style={styles.settingsBtn}>
+            <Text style={[styles.settingsGlyph, { color: theme.textDim, fontFamily: 'Courier New' }]}>⊚</Text>
+          </TouchableOpacity>
+        </View>
 
         {/* Phase coordinates */}
         <View style={styles.coordRow}>
@@ -145,7 +150,10 @@ function QuickLink({ label, glyph, theme, onPress, colour }) {
 const styles = StyleSheet.create({
   root: { flex: 1 },
   container: { padding: TOKENS.space.lg, paddingTop: 60, paddingBottom: 100 },
-  greeting: { fontSize: 13, letterSpacing: 0.5, marginBottom: TOKENS.space.sm },
+  topRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: TOKENS.space.sm },
+  greeting: { fontSize: 13, letterSpacing: 0.5, flex: 1 },
+  settingsBtn: { padding: TOKENS.space.sm },
+  settingsGlyph: { fontSize: 20 },
   coordRow: {
     flexDirection: 'row', alignItems: 'center', gap: TOKENS.space.md,
     marginBottom: TOKENS.space.xl,
